@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GlobalStyling } from './globalStyling';
-import { FiArrowUp } from "react-icons/fi";
 import styled from 'styled-components';
+import ScrollToTop from './ScrollToTop';
 
 const BackToTop = styled.div`
     background: #333;
@@ -57,32 +57,6 @@ const FiArrowUps = styled.i`
 }`
 
 function App() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-
-    return () => {
-      return window.removeEventListener('scroll', toggleVisibility);
-    }
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  };
-
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-      setVisible(true);
-
-    } else {
-      setVisible(false);
-    }
-  };
-
   return (
     <>
       <GlobalStyling />
@@ -96,18 +70,10 @@ function App() {
         <BackToTopP>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</BackToTopP>
         <BackToTopP>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</BackToTopP>
         <BackToTopP>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</BackToTopP>
-
-
-        {visible && (<>
-          <Scrolls onClick={scrollToTop}>
-            <FiArrowUps>
-              <FiArrowUp />
-            </FiArrowUps>
-          </Scrolls>
-        </>
-        )}
+        <ScrollToTop />
       </BackToTop>
     </>
+
   );
 }
 
